@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,20 +51,20 @@
     .but {
         z-index: 1000;
         position: absolute;
-        bottom: 50px; /* Lo ponemos abajo en lugar de arriba */
-        right: 50px;  /* Un poco más separado del borde */
-        background-color: rgba(56, 56, 56, 0.8);
+        top: 12%; 
+        right: 2%;
+        background-color: rgba(56, 56, 56, 0.5); /* Más transparente */
         border-radius: 50%;
-        border: 2px solid #fff; /* Borde más visible */
+        border: 1px solid #rgba(255,255,255,0.3);
         color: #ffffff;
-        font-size: 20px; /* Un poco más grande para que sea fácil de clicar */
+        font-size: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px; /* Tamaño aumentado para asegurar el clic */
-        height: 50px;
+        width: 35px;
+        height: 35px;
     }
         
     .but:hover {
@@ -283,5 +284,4 @@
     setInterval(changeWord, 4000);
 </script>
 </body>
-
 </html>
