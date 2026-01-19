@@ -1,16 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Las Vegas - Rayko</title>
+  <title>Las Vegas - Optimized Theme</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=Exo:100,400,700|Monoton" rel="stylesheet">
   
   <style>
     body {
         /* Fondo base inicial (Deep Sky Soft) con animación */
-        /* Colores más suaves y profundos en lugar de negros puros */
         background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4a4e69);
         background-size: 300% 300%;
         overflow: hidden;
@@ -19,19 +17,18 @@
         height: 100vh;
         margin: 0;
         position: relative;
-        /* Esta animación hace que el degradado se mueva */
-        animation: gradientBG 20s ease infinite; /* Un poco más lento para ser más sutil */
+        /* Animación suave del degradado */
+        animation: gradientBG 20s ease infinite;
         transition: background-image 1s ease, color 1s ease;
     }
 
-    /* Animación del movimiento del fondo */
     @keyframes gradientBG {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
 
-    /* Textura de brillitos superpuesta (MÁS VISIBLE) */
+    /* Textura de brillitos superpuesta */
     body::before {
         content: "";
         position: absolute;
@@ -39,38 +36,38 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* Usamos la misma textura pero aumentamos la opacidad */
         background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-        opacity: 0.5; /* Aumentado de 0.3 a 0.5 para que los brillos destaquen más */
+        opacity: 0.5;
         pointer-events: none;
         z-index: 1;
-        mix-blend-mode: screen; /* Ayuda a que los brillos se integren mejor */
+        mix-blend-mode: screen;
     }
 
-    /* --- BOTÓN LUNA (Ajustado) --- */
+    /* --- BOTÓN LUNA (OPTIMIZADO PARA XAT) --- */
+    /* Movido abajo para evitar bloqueo del chat */
     .but {
         z-index: 1000;
         position: absolute;
-        top: 12%; 
-        right: 2%;
-        background-color: rgba(56, 56, 56, 0.5); /* Más transparente */
+        bottom: 50px; /* Abajo */
+        right: 50px;  /* Derecha */
+        background-color: rgba(56, 56, 56, 0.6);
         border-radius: 50%;
-        border: 1px solid #rgba(255,255,255,0.3);
+        border: 2px solid rgba(255,255,255,0.5);
         color: #ffffff;
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 35px;
-        height: 35px;
+        width: 50px; /* Tamaño cómodo para clicar */
+        height: 50px;
     }
         
     .but:hover {
-        background-color: rgba(0,0,0,0.8);
+        background-color: rgba(0,0,0,0.9);
         color: #ffd700;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         transform: scale(1.1);
     }
 
@@ -89,7 +86,6 @@
         color: #fff;
         font-size: 40px;
         margin-bottom: 10px;
-        /* Sombra inicial más suave (azul pastel) */
         text-shadow: 0 0 10px rgba(100, 180, 255, 0.7), 0 0 20px rgba(60, 130, 200, 0.5);
         line-height: 1;
         transition: text-shadow 0.5s ease, color 0.5s ease;
@@ -105,31 +101,14 @@
         display: block;
     }
 
-    /* Animaciones de letras (Intactas) */
+    /* Animaciones de letras */
     .word { position: absolute; width: 400px; opacity: 0; left: 0;}
     .letter { display: inline-block; position: relative; float: left; transform: translateZ(25px); transform-origin: 50% 50% 25px; }
     .letter.out { transform: rotateX(90deg); transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19); }
     .letter.behind { transform: rotateX(-90deg); }
     .letter.in { transform: rotateX(0deg); transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
-    /* --- DINERO CAYENDO (Más sutil) --- */
-    .money {
-        position: absolute;
-        top: -50px;
-        color: #E6BE8A; /* Oro más pálido en lugar de 'gold' chillón */
-        font-size: 20px;
-        user-select: none;
-        pointer-events: none;
-        z-index: 2;
-        text-shadow: 0 0 5px rgba(230, 190, 138, 0.6);
-        animation: fall linear infinite;
-        opacity: 0.6; /* Más sutil */
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(0) rotate(0deg); }
-        100% { transform: translateY(110vh) rotate(360deg); }
-    }
+    
+    /* SE ELIMINÓ LA CLASE .money Y @keyframes fall PARA REDUCIR LAG */
   </style>
 </head>
 <body>
@@ -151,26 +130,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script>
-    // --- 1. Lluvia de Dinero ($) ---
-    function createMoney() {
-        const money = document.createElement('div');
-        money.innerText = '$';
-        money.classList.add('money');
-        // Posición aleatoria
-        money.style.left = Math.random() * 100 + "vw";
-        // Velocidad aleatoria más lenta para más elegancia
-        money.style.animationDuration = Math.random() * 4 + 4 + "s"; 
-        // Tamaño aleatorio
-        money.style.fontSize = Math.random() * 20 + 15 + "px";
-        document.body.appendChild(money);
-        // Eliminar elemento al terminar
-        setTimeout(() => { money.remove(); }, 8000);
-    }
-    // Generar un billete cada 300ms (menos frecuencia)
-    setInterval(createMoney, 300);
+    // --- SE ELIMINÓ EL SCRIPT DE LLUVIA DE DINERO PARA REDUCIR LAG ---
 
-
-    // --- 2. Cambio de Temas (COLORES SUAVES Y ELEGANTES) ---
+    // --- Cambio de Temas (COLORES SUAVES) ---
     var count = 0;
     var n = 5;
 
@@ -178,19 +140,17 @@
         var bgSize = "300% 300%";
 
         if (count === 0) {
-            // TEMA: Champagne & Ivory (Lujo Suave)
-            // Reemplaza el oro fuerte por tonos crema, beige y bronce suave.
+            // TEMA: Champagne & Ivory
             $('body').css({
                 'background-image': 'linear-gradient(-45deg, #A47C48, #C19A6B, #E6BE8A, #F0EAD6, #9E8D7D)',
                 'background-size': bgSize,
-                'color': '#2c1e12' // Texto oscuro para contraste
+                'color': '#2c1e12'
             });
              $('.context h1').css({'color': '#2c1e12', 'text-shadow': '0 0 15px rgba(193, 154, 107, 0.5)'});
              $('.animtext').css({'color': '#4a3f35'});
         } 
         else if (count === 1) {
-            // TEMA: Merlot Velvet (Rojo Vino Suave)
-            // Reemplaza el rojo sangre por tonos borgoña, ciruela y vino.
+            // TEMA: Merlot Velvet
             $('body').css({
                 'background-image': 'linear-gradient(-45deg, #2c041c, #4c0e2e, #782346, #a0466a)',
                 'background-size': bgSize,
@@ -200,8 +160,7 @@
             $('.animtext').css({'color': 'rgba(255,255,255,0.9)'});
         } 
         else if (count === 2) {
-            // TEMA: Pastel Neon Dreams (Vaporwave Suave)
-            // Reemplaza el neón chillón por rosas pastel, azules cielo y lilas suaves.
+            // TEMA: Pastel Neon Dreams
             $('body').css({
                 'background-image': 'linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb)',
                 'background-size': bgSize,
@@ -211,8 +170,7 @@
              $('.animtext').css({'color': '#5e4b69'});
         } 
         else if (count === 3) {
-            // TEMA: Emerald Lounge (Verde Profundo Suave)
-            // Reemplaza el verde Matrix por tonos esmeralda profundos y azul cerceta.
+            // TEMA: Emerald Lounge
             $('body').css({
                 'background-image': 'linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #134E5E, #71B280)',
                 'background-size': bgSize,
@@ -222,8 +180,7 @@
              $('.animtext').css({'color': 'rgba(255,255,255,0.9)'});
         } 
         else if (count === 4) {
-            // TEMA: Deep Sky (Azul Noche Suave)
-            // Vuelve al tema inicial pero con azules y morados más apagados.
+            // TEMA: Deep Sky (Vuelta al inicio)
             $('body').css({
                 'background-image': 'linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4a4e69)',
                 'background-size': bgSize,
@@ -237,7 +194,7 @@
         if (count === n) count = 0;
     }
 
-    // --- 3. Animación de Texto (Split Letters - INTACTO) ---
+    // --- Animación de Texto (Split Letters) ---
     var words = document.getElementsByClassName('word');
     var wordArray = [];
     var currentWord = 0;
