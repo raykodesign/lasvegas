@@ -43,25 +43,23 @@
         mix-blend-mode: screen;
     }
 
-    /* --- BOTÓN LUNA (OPTIMIZADO PARA XAT) --- */
-    /* Movido abajo para evitar bloqueo del chat */
     .but {
         z-index: 1000;
         position: absolute;
-        bottom: 50px; /* Abajo */
-        right: 50px;  /* Derecha */
-        background-color: rgba(56, 56, 56, 0.6);
+        top: 12%; 
+        right: 2%;
+        background-color: rgba(56, 56, 56, 0.5); /* Más transparente */
         border-radius: 50%;
-        border: 2px solid rgba(255,255,255,0.5);
+        border: 1px solid #rgba(255,255,255,0.3);
         color: #ffffff;
-        font-size: 20px;
+        font-size: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px; /* Tamaño cómodo para clicar */
-        height: 50px;
+        width: 35px;
+        height: 35px;
     }
         
     .but:hover {
